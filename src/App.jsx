@@ -11,7 +11,7 @@ import Portfolio from './pages/Portfolio.jsx';
 import Gallery from './pages/Gallery.jsx';
 import FAQ from './pages/FAQ.jsx';
 import Contact from './pages/Contact.jsx';
-
+import ServiceDetail from './pages/ServiceDetail.jsx';
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/catalogue" element={<Catalogue />} />
         <Route path="/store" element={<Store />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/faq" element={<FAQ />} />
