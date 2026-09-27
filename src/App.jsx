@@ -12,6 +12,7 @@ import Gallery from './pages/Gallery.jsx';
 import FAQ from './pages/FAQ.jsx';
 import Contact from './pages/Contact.jsx';
 import ServiceDetail from './pages/ServiceDetail.jsx';
+import ContactButton from './components/ContactButton.jsx';
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function App() {
         </Routes>
       </div>
       <Footer />
+       <ContactButton />
     </>
   );
 }

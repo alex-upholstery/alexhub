@@ -14,7 +14,7 @@ import livingRoom from '../assets/images/living-room-grey.jpg';
 import bedroom from '../assets/images/bedroom-headboard.jpg';
 import patioPool from '../assets/images/patio-pool.jpg';
 import trustImg from '../assets/images/blue-couch-ottoman.jpg';
-
+import SideActions from '../components/SideActions.jsx';
 // Real showroom photography — De Palace Mall
 import newArrivalImg from '../assets/images/showroom-white-curved-sofa.webp';
 import showcase1 from '../assets/images/showroom-brown-corner-sofa.webp';
@@ -60,6 +60,7 @@ export default function Home() {
   }, []);
   return (
     <>
+     <SideActions />
       <section className="hero">
   {HERO_IMAGES.map((img, i) => (
     <img
