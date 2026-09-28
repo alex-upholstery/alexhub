@@ -53,16 +53,14 @@ export default function Nav() {
     <div className="nav-outer">
       <header className="nav">
         <div className="wrap">
-          <NavLink
-            to="/"
-            className="brand"
-            aria-label="Furn Hub Upholstery — Home"
-            onClick={() => setOpen(false)}
-          >
-           <span className="brand-mark">
-  <img src={logo} alt="" />
-</span>
-          </NavLink>
+         <NavLink
+  to="/"
+  className="brand"
+  aria-label="Furn Hub Upholstery — Home"
+  onClick={() => setOpen(false)}
+>
+  <img src={logo} alt="Furn Hub Upholstery" className="brand-logo" />
+</NavLink>
 
           <ul className={`nav-links ${open ? "open" : ""}`}>
             {LINKS.map((l) => (
