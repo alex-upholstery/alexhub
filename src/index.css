@@ -141,7 +141,7 @@ p {
 .nav {
   max-width: var(--wrap);
   margin: 0 auto;
-  background: #141110;
+  background: #141010;
   border-radius: 999px;
   box-shadow: 0 14px 30px -12px rgba(20, 16, 12, 0.45);
 }
@@ -194,7 +194,7 @@ p {
 .nav-links a:hover,
 .nav-links a.active {
   color: #fff;
-  border-color: var(--thread);
+  border-color: #cc0303;
 }
 .nav-cta {
   display: flex;
@@ -415,7 +415,67 @@ html, body {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
   background: #000;
 }
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;               /* white icons */
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;              /* forces white even if something overrides currentColor */
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--thread);
+}
+
+.icon-btn:hover svg {
+  stroke: var(--thread);
+}
+.cart-badge {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--thread);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+}
+
+/* Optional: hide the email label on small screens so the icons fit */
+@media (max-width: 720px) {
+  .nav-cta .btn.solid { display: none; }
+}
 .contact-btn-icon {
   width: 32px;
   height: 32px;
