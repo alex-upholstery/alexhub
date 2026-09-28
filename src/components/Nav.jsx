@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../pages/CartContext";
+import logo from "../assets/images/logo-animation.svg";
 const LINKS = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
@@ -58,16 +59,9 @@ export default function Nav() {
             aria-label="Furn Hub Upholstery — Home"
             onClick={() => setOpen(false)}
           >
-            <span className="brand-mark" style={{ color: "var(--thread)" }}>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></svg>
-            </span>
+           <span className="brand-mark">
+  <img src={logo} alt="" />
+</span>
           </NavLink>
 
           <ul className={`nav-links ${open ? "open" : ""}`}>
