@@ -13,6 +13,9 @@ import FAQ from './pages/FAQ.jsx';
 import Contact from './pages/Contact.jsx';
 import ServiceDetail from './pages/ServiceDetail.jsx';
 import ContactButton from './components/ContactButton.jsx';
+import Search from "./pages/Search";
+import Cart from "./pages/Cart";
+import Login from "./pages/Login";
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -38,6 +41,9 @@ export default function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+<Route path="/search" element={<Search />} />
+<Route path="/cart" element={<Cart />} />
+<Route path="/login" element={<Login />} />
         </Routes>
       </div>
       <Footer />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { useCart } from "../pages/CartContext";
 const LINKS = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
@@ -46,7 +46,7 @@ const UserIcon = () => (
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const cartCount = 0; // wire this to your cart state/context
+  const { count: cartCount } = useCart();
 
   return (
     <div className="nav-outer">
