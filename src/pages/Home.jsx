@@ -60,7 +60,7 @@ export default function Home() {
   }, []);
   return (
     <>
-     <SideActions />
+    
       <section className="hero">
   {HERO_IMAGES.map((img, i) => (
     <img
