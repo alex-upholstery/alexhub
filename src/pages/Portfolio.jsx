@@ -2,11 +2,11 @@ import { useState } from 'react';
 import Newsletter from '../components/Newsletter.jsx';
 
 import bedroom from '../assets/images/bedroom-headboard.jpg';
-import mediaUnit from '../assets/images/media-unit.jpg';
-import carSeat from '../assets/images/car-seat-side.jpg';
+import mediaUnit from '../assets/images/curtains-9.jpeg';
+import carSeat from '../assets/images/carseat-rear-2.jpeg';
 import patioLounge from '../assets/images/patio-lounge.jpg';
 import livingRoom from '../assets/images/living-room-yellow.jpg';
-import outdoorBench from '../assets/images/outdoor-bench.jpg';
+import outdoorBench from '../assets/images/outdoor-1.jpeg';
 import chesterfield from '../assets/images/chesterfield-chaise.jpg';
 import outdoorCouch from '../assets/images/outdoor-couch.jpg';
 import kitchen from '../assets/images/kitchen-white.jpg';

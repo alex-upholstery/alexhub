@@ -5,18 +5,18 @@ import Newsletter from "../components/Newsletter.jsx";
 import g1 from "../assets/images/chesterfield-chaise.jpg";
 import g2 from "../assets/images/hero-couch-blue.jpg";
 import g3 from "../assets/images/long-grey-couch.jpg";
-import g4 from "../assets/images/media-unit.jpg";
+import g4 from "../assets/images/table-2.jpeg";
 import g5 from "../assets/images/living-room-grey.jpg";
 import g6 from "../assets/images/living-room-yellow.jpg";
 import g7 from "../assets/images/armchair-grey.jpg";
 import g8 from "../assets/images/blue-couch-ottoman.jpg";
-import g9 from "../assets/images/fabric-swatch-1.jpg";
-import g10 from "../assets/images/fabric-swatch-2.jpg";
-import g11 from "../assets/images/fabric-swatch-3.jpg";
-import g12 from "../assets/images/fabric-swatch-4.jpg";
-import g13 from "../assets/images/patio-chairs.jpg";
+import g9 from "../assets/images/carpentry-2.jpeg";
+import g10 from "../assets/images/curtains-7.jpeg";
+import g11 from "../assets/images/store-1.jpeg";
+import g12 from "../assets/images/reupholstery-1.jpeg";
+import g13 from "../assets/images/back.webp";
 import g14 from "../assets/images/patio-pergola.jpg";
-import g15 from "../assets/images/outdoor-couch.jpg";
+import g15 from "../assets/images/table-1.jpeg";
 import g16 from "../assets/images/sectional-blue-cushion.jpg";
 
 // Showroom pieces — De Palace Mall

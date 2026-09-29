@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import Newsletter from '../components/Newsletter.jsx';
 
-import chesterfield from '../assets/images/chesterfield-chaise.jpg';
+import chesterfield from '../assets/images/reupholstery-1.jpeg';
 import bedroom from '../assets/images/bedroom-headboard.jpg';
 import accentChair from '../assets/images/accent-chair-mustard.jpg';
-import livingRoomGrey from '../assets/images/living-room-grey.jpg';
+import livingRoomGrey from '../assets/images/curtains-3.jpeg';
 import carSeat from '../assets/images/car-seat-black.jpg';
 import livingRoomYellow from '../assets/images/living-room-yellow.jpg';
-import mediaUnit from '../assets/images/media-unit.jpg';
-import outdoorBench from '../assets/images/outdoor-bench.jpg';
+import mediaUnit from '../assets/images/curtains-9.jpeg';
+import outdoorBench from '../assets/images/carpentry-1.jpeg';
 import fabric1 from '../assets/images/fabric-swatch-1.jpg';
 import fabric2 from '../assets/images/fabric-swatch-2.jpg';
 import fabric3 from '../assets/images/fabric-swatch-3.jpg';
-import fabric4 from '../assets/images/fabric-swatch-4.jpg';
+import fabric4 from '../assets/images/fabric-4.webp';
 import outdoorCouch from '../assets/images/outdoor-couch.jpg';
 import sectionalBlue from '../assets/images/sectional-blue-cushion.jpg';
 import longGreyCouch from '../assets/images/long-grey-couch.jpg';

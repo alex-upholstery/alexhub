@@ -1,7 +1,7 @@
-import carSeat from "./assets/images/car-seat-rear.jpg";
-import mediaUnit from "./assets/images/media-unit.jpg";
+import carSeat from "./assets/images/carseat-rear-1.jpeg";
+import mediaUnit from "./assets/images/curtains-1.jpeg";
 import customTable from "./assets/images/custom-table.jpg";
-import outdoorBench from "./assets/images/outdoor-bench.jpg";
+import outdoorBench from "./assets/images/carpentry-1.jpeg";
 import patioLounge from "./assets/images/patio-lounge.jpg";
 
 // Real showroom photography — De Palace Mall
