@@ -8,8 +8,8 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
-            <div className="brand">
-              Alex <span>Upholstery</span>
+            <div className="brand" >
+              afurnhub Upholstery
             </div>
             <p>
               Where your furniture's future is re-imagined. Restoring and
