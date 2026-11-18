@@ -221,32 +221,6 @@ function ProductCard({ item }) {
 export default function Store() {
   return (
     <>
-      <section className="page-hero">
-        <div className="wrap">
-          <span className="eyebrow">Store</span>
-          <h1>Shop the showroom</h1>
-          <p className="lede">
-            Beautifully transformed sofas, chairs, headboards, and more — from
-            classic elegance to modern design, with a vast fabric selection and
-            personalized service.
-          </p>
-        </div>
-      </section>
-
-      <section style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="gallery-grid">
-            {IMAGES.map((img, i) => (
-              <img
-                src={img}
-                alt={` furn hub Upholstery project ${i + 1}`}
-                key={i}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="alt">
         <div className="wrap">
           <span className="eyebrow">Showroom</span>
