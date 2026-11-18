@@ -48,7 +48,7 @@ button {
 }
 
 .wrap {
-  max-width: 1920;
+  max-width: 1180;
   margin: 0 auto;
   padding: 0 32px;
 }
@@ -157,7 +157,7 @@ p {
   display: flex;
   align-items: center;
   background: #fff;
-  border-radius: 999px;      /* same pill shape as .btn */
+  border-radius: 999px; /* same pill shape as .btn */
   padding: 8px 22px;
   flex: 0 0 auto;
   transition: background 0.18s ease;
@@ -167,13 +167,17 @@ p {
 }
 .brand-logo {
   height: 32px;
-  width: auto;               /* keeps the wide proportions */
+  width: auto; /* keeps the wide proportions */
   display: block;
 }
 
 @media (max-width: 520px) {
-  .brand { padding: 6px 16px; }
-  .brand-logo { height: 24px; }
+  .brand {
+    padding: 6px 16px;
+  }
+  .brand-logo {
+    height: 24px;
+  }
 }
 .nav-links {
   display: flex;
@@ -311,16 +315,17 @@ p {
   margin-top: 16px;
   font-size: 1.05rem;
 }
-html, body {
+html,
+body {
   margin: 0;
 }
 
 .page-content {
   position: relative;
   z-index: 1;
-  background: #fff;       /* must be opaque so it actually covers the footer */
-  min-height: 100vh;      /* so short pages still cover the whole screen */
-  margin-bottom: 380px;    /* same as footer height — this gap reveals it */
+  background: #fff; /* must be opaque so it actually covers the footer */
+  min-height: 100vh; /* so short pages still cover the whole screen */
+  margin-bottom: 380px; /* same as footer height — this gap reveals it */
 }
 .hero-actions {
   margin-top: 32px;
@@ -397,7 +402,7 @@ html, body {
   justify-content: center;
   gap: 8px;
   padding: 13px 28px;
-  border-radius: 999px;          /* same pill shape as .btn */
+  border-radius: 999px; /* same pill shape as .btn */
   border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--cream);
@@ -411,7 +416,7 @@ html, body {
     transform 0.18s ease;
 }
 .contact-btn:hover {
-  background: var(--thread);      /* same hover as .btn.solid */
+  background: var(--thread); /* same hover as .btn.solid */
   border-color: var(--thread);
   transform: translateY(-2px);
 }
@@ -422,7 +427,6 @@ html, body {
     font-size: 0.9rem;
   }
 }
-
 
 .nav-cta {
   display: flex;
@@ -445,17 +449,19 @@ html, body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: #fff;               /* white icons */
+  color: #fff; /* white icons */
   background: transparent;
   border: 0;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .icon-btn svg {
   width: 20px;
   height: 20px;
-  stroke: #000000;              /* forces white even if something overrides currentColor */
+  stroke: #000000; /* forces white even if something overrides currentColor */
 }
 
 .icon-btn:hover {
@@ -484,7 +490,9 @@ html, body {
 
 /* Optional: hide the email label on small screens so the icons fit */
 @media (max-width: 720px) {
-  .nav-cta .btn.solid { display: none; }
+  .nav-cta .btn.solid {
+    display: none;
+  }
 }
 .contact-btn-icon {
   width: 32px;
@@ -569,8 +577,6 @@ html, body {
 .side-actions-item:hover {
   opacity: 0.7;
 }
-
-
 
 .side-actions-login {
   padding: 10px 18px;
@@ -856,7 +862,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 380px;           /* set this to your actual footer height */
+  height: 380px; /* set this to your actual footer height */
   z-index: 0;
 }
 
@@ -864,7 +870,7 @@ footer {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 260px;       /* adjust to taste */
+  width: 260px; /* adjust to taste */
   height: auto;
   border-top-left-radius: 12px;
   object-fit: cover;
@@ -1197,4 +1203,18 @@ footer .wrap {
   border-bottom: 1px solid var(--thread-dark);
   align-self: flex-start;
   margin-top: 2px;
+}
+
+.service-card .body p.price {
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 1rem;
+  flex: 0;
+  margin-top: 4px;
+}
+.service-card .body p.installment {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  flex: 0;
+  margin-top: -6px;
 }
