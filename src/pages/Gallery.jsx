@@ -18,8 +18,6 @@ import g13 from "../assets/images/back.webp";
 import g14 from "../assets/images/patio-pergola.jpg";
 import g15 from "../assets/images/table-1.jpeg";
 import g16 from "../assets/images/sectional-blue-cushion.jpg";
-
-// Showroom pieces — De Palace Mall
 import s1 from "../assets/images/showroom-brown-sectional-armchair.webp";
 import s2 from "../assets/images/showroom-white-curved-sofa.webp";
 import s3 from "../assets/images/showroom-white-curved-sofa-top.webp";
@@ -39,8 +37,6 @@ import s16 from "../assets/images/showroom-grey-sectional-brown-chair.webp";
 import s17 from "../assets/images/showroom-grey-sectional-top.webp";
 import s18 from "../assets/images/showroom-brown-corner-sofa.webp";
 import s19 from "../assets/images/showroom-brown-corner-sofa-wide.webp";
-
-// Showroom pieces — batch 2
 import s20 from "../assets/images/showroom-beige-sofas-dark-chairs.webp";
 import s21 from "../assets/images/showroom-beige-sofas-brown-chairs-art.webp";
 import s22 from "../assets/images/showroom-beige-sofa-set-top.webp";

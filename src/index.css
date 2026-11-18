@@ -48,7 +48,7 @@ button {
 }
 
 .wrap {
-  max-width: var(--wrap);
+  max-width: 1920;
   margin: 0 auto;
   padding: 0 32px;
 }
@@ -136,12 +136,12 @@ p {
   top: 0;
   z-index: 40;
   padding: 18px 24px 0;
-  background: var(--cream);
+  background: transparent;
 }
 .nav {
   max-width: var(--wrap);
   margin: 0 auto;
-  background: #141010;
+  background: transparent;
   border-radius: 999px;
   box-shadow: 0 14px 30px -12px rgba(20, 16, 12, 0.45);
 }
@@ -182,16 +182,16 @@ p {
   margin: 0;
   padding: 0;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgb(29, 28, 28);
 }
 .nav-links a {
   padding: 6px 0;
   border-bottom: 1px solid transparent;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgb(48, 48, 48);
 }
 .nav-links a:hover,
 .nav-links a.active {
-  color: #fff;
+  color: #070707;
   border-color: #cc0303;
 }
 .nav-cta {
@@ -203,13 +203,13 @@ p {
 .nav-cta .btn.solid {
   background: #fff;
   color: var(--ink);
-  border-color: #fff;
+  border-color: #141414;
   padding: 11px 24px;
   font-size: 0.88rem;
 }
 .nav-cta .btn.solid:hover {
   background: var(--thread);
-  color: #fff;
+  color: #3b1212;
   border-color: var(--thread);
 }
 .nav-toggle {
@@ -284,7 +284,7 @@ p {
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  margin-top: 20px;
+  margin-top: 30px;
   padding-top: 40px;
 }
 .hero img {
@@ -434,6 +434,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 4px;
+  color: #070707;
 }
 
 .icon-btn {
@@ -454,7 +455,7 @@ html, body {
 .icon-btn svg {
   width: 20px;
   height: 20px;
-  stroke: #fff;              /* forces white even if something overrides currentColor */
+  stroke: #000000;              /* forces white even if something overrides currentColor */
 }
 
 .icon-btn:hover {
