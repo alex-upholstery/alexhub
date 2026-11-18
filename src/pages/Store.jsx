@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
+import { DINING, CHAIRS, BEDS, PEDESTALS } from "../store-data.js";
 import Testimonials from "../components/Testimonials.jsx";
 import Newsletter from "../components/Newsletter.jsx";
 
@@ -190,38 +191,117 @@ const SHOWROOM_PRODUCTS = [
 function ProductCard({ item }) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
+  const name = item.name || item.label;
+  const image = item.img || item.src;
 
   const handleAdd = () => {
-    add({ id: item.id, name: item.label, price: item.from, img: item.src });
+    add({ id: item.id, name, price: item.from, img: image });
     setAdded(true);
     setTimeout(() => setAdded(false), 1600);
   };
 
   return (
     <article className="product-card">
-      <img src={item.src} alt={item.label} loading="lazy" />
+      <img src={image} alt={name} loading="lazy" />
       <div className="product-body">
-        <h3>{item.label}</h3>
-        <p className="price">From {formatRand(item.from)}</p>
-        <p className="installment">
-          or 4 interest-free payments of {formatRand(item.from / 4)}
-        </p>
-        <button
-          type="button"
-          className={`btn solid add-btn${added ? " added" : ""}`}
-          onClick={handleAdd}
-        >
-          {added ? "Added ✓" : "Add to cart"}
-        </button>
+        <h3>{name}</h3>
+        {item.text && <p className="desc">{item.text}</p>}
+        {item.from ? (
+          <>
+            <p className="price">From {formatRand(item.from)}</p>
+            <p className="installment">
+              or 4 interest-free payments of {formatRand(item.from / 4)}
+            </p>
+            <button
+              type="button"
+              className={`btn solid add-btn${added ? " added" : ""}`}
+              onClick={handleAdd}
+            >
+              {added ? "Added ✓" : "Add to cart"}
+            </button>
+          </>
+        ) : (
+          <>
+            <p className="price">Price on request</p>
+            <p className="installment">
+              Contact us for pricing and fabric options.
+            </p>
+            <Link to="/contact" className="btn add-btn">
+              Enquire
+            </Link>
+          </>
+        )}
       </div>
     </article>
   );
 }
 
+const withIds = (prefix, list) =>
+  list.map((p, i) => ({ ...p, id: `${prefix}-${i + 1}` }));
+
+const CATEGORIES = [
+  {
+    key: "dining",
+    title: "Dining tables & chairs",
+    items: withIds("dining", DINING),
+  },
+  {
+    key: "chairs",
+    title: "Occasional chairs",
+    items: withIds("chair", CHAIRS),
+  },
+  { key: "beds", title: "Headboards & beds", items: withIds("bed", BEDS) },
+  {
+    key: "pedestals",
+    title: "Pedestals & patio",
+    items: withIds("pedestal", PEDESTALS),
+  },
+];
+
 export default function Store() {
   return (
     <>
-      <section className="alt">
+      <section className="page-hero">
+        <div className="wrap">
+          <span className="eyebrow">Store</span>
+          <h1>Shop the showroom</h1>
+          <p className="lede">
+            Beautifully transformed sofas, chairs, headboards, and more — from
+            classic elegance to modern design, with a vast fabric selection and
+            personalized service.
+          </p>
+        </div>
+      </section>
+
+      <section style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="gallery-grid">
+            {IMAGES.map((img, i) => (
+              <img
+                src={img}
+                alt={` furn hub Upholstery project ${i + 1}`}
+                key={i}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {CATEGORIES.map((cat, idx) => (
+        <section key={cat.key} className={idx % 2 === 1 ? "alt" : undefined}>
+          <div className="wrap">
+            <span className="eyebrow">Shop</span>
+            <h2>{cat.title}</h2>
+            <div className="store-grid">
+              {cat.items.map((item) => (
+                <ProductCard item={item} key={item.id} />
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <section>
         <div className="wrap">
           <span className="eyebrow">Showroom</span>
           <h2>Shop pieces from Doringkloof Mall</h2>
@@ -287,6 +367,10 @@ export default function Store() {
         }
         .product-body h3 { font-size: 1rem; line-height: 1.3; }
         .product-body .price { font-weight: 500; margin-top: 2px; }
+        .product-body .desc {
+          font-size: 0.88rem;
+          color: var(--ink-soft);
+        }
         .product-body .installment {
           font-size: 0.82rem;
           color: var(--ink-soft);
@@ -297,6 +381,7 @@ export default function Store() {
           width: 100%;
           cursor: pointer;
           text-align: center;
+          box-sizing: border-box;
         }
         .product-body .add-btn.added { opacity: 0.85; }
         @media (max-width: 1000px) {
