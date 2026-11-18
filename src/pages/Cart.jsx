@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { useCart } from "./CartContext";
 
+const rand = (n) =>
+  "R " + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 export default function Cart() {
   const { items, total, setQty, remove, clear } = useCart();
 
@@ -21,10 +24,14 @@ export default function Cart() {
             <ul className="cart-list">
               {items.map((i) => (
                 <li key={i.id} className="cart-row">
-                  <div className="product-img small" aria-hidden="true" />
+                  {i.img ? (
+                    <img src={i.img} alt="" className="product-img small" style={{ objectFit: "cover" }} />
+                  ) : (
+                    <div className="product-img small" aria-hidden="true" />
+                  )}
                   <div className="cart-info">
                     <h3>{i.name}</h3>
-                    <span className="muted">${i.price} each</span>
+                    <span className="muted">{rand(i.price)} each</span>
                   </div>
 
                   <div className="qty" role="group" aria-label={`Quantity for ${i.name}`}>
@@ -37,7 +44,7 @@ export default function Cart() {
                     </button>
                   </div>
 
-                  <strong className="line-total">${i.price * i.qty}</strong>
+                  <strong className="line-total">{rand(i.price * i.qty)}</strong>
                   <button
                     className="link-btn"
                     onClick={() => remove(i.id)}
@@ -53,7 +60,7 @@ export default function Cart() {
               <h2>Order summary</h2>
               <div className="summary-row">
                 <span>Subtotal</span>
-                <strong>${total}</strong>
+                <strong>{rand(total)}</strong>
               </div>
               <p className="muted">Delivery and fitting are confirmed after you send your order.</p>
               <NavLink to="/contact" className="btn solid block">
