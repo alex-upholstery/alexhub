@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /cart
+Disallow: /login
+Disallow: /search
+
+Sitemap: https://afurnhub.com/sitemap.xml
