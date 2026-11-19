@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const STORAGE_KEY = "promoPopupSeen";
 const SHOW_DELAY_MS = 1500;
 const WHATSAPP_NUMBER = "27634555268";
 const WHATSAPP_MESSAGE =
@@ -19,27 +18,13 @@ export default function PromoPopup({ image, from }) {
   const [open, setOpen] = useState(false);
   const closeRef = useRef(null);
 
-  // Show once per browser session, after a short delay.
+  // Show on every page load / refresh, after a short delay.
   useEffect(() => {
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem(STORAGE_KEY) === "1";
-    } catch {
-      /* storage unavailable: just show it */
-    }
-    if (seen) return;
     const id = setTimeout(() => setOpen(true), SHOW_DELAY_MS);
     return () => clearTimeout(id);
   }, []);
 
-  const close = () => {
-    setOpen(false);
-    try {
-      sessionStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      /* ignore */
-    }
-  };
+  const close = () => setOpen(false);
 
   // Escape to close, lock page scroll, focus the close button.
   useEffect(() => {
@@ -106,8 +91,8 @@ export default function PromoPopup({ image, from }) {
           <span className="promo-badge">Special showroom offer</span>
           <h2 id="promo-title">The Modular Bouclé Sofa</h2>
           <p className="promo-lede">
-            Soft cream bouclé on a walnut plinth, built from separate modules:
-            a chaise end, a two-seater and a seat with a built-in side table.
+            Soft cream bouclé on a walnut plinth, built from separate modules: a
+            chaise end, a two-seater and a seat with a built-in side table.
             Arrange it your way and add your choice of accent cushions.
           </p>
           <ul className="promo-list">
