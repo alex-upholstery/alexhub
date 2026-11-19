@@ -35,12 +35,33 @@ export default function Cart() {
     if (!form.email.includes("@"))
       return setError("Enter a valid email address.");
 
-    const orderDetails = items
-      .map(
-        (i) =>
-          `${i.qty} × ${i.name} — ${rand(i.price)} each = <strong>${rand(i.price * i.qty)}</strong>`,
-      )
-      .join("<br>");
+   const toAbsolute = (src) =>
+  src ? new URL(src, window.location.origin).href : "";
+
+const orderDetails = `
+<table style="border-collapse:collapse;width:100%;font-family:Arial,sans-serif;font-size:14px;">
+  ${items
+    .map(
+      (i) => `
+    <tr>
+      <td style="padding:8px;border-bottom:1px solid #eee;width:90px;">
+        ${
+          i.img
+            ? `<img src="${toAbsolute(i.img)}" alt="" width="80" style="display:block;border-radius:4px;" />`
+            : ""
+        }
+      </td>
+      <td style="padding:8px;border-bottom:1px solid #eee;">
+        <strong>${i.name}</strong><br>
+        Qty: ${i.qty} × ${rand(i.price)}
+      </td>
+      <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">
+        <strong>${rand(i.price * i.qty)}</strong>
+      </td>
+    </tr>`
+    )
+    .join("")}
+</table>`;
 
     setStatus("sending");
     try {
