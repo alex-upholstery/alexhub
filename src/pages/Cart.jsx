@@ -35,34 +35,44 @@ export default function Cart() {
     if (!form.email.includes("@"))
       return setError("Enter a valid email address.");
 
-   const toAbsolute = (src) =>
+const esc = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+const toAbsolute = (src) =>
   src ? new URL(src, window.location.origin).href : "";
 
 const orderDetails = `
-<table style="border-collapse:collapse;width:100%;font-family:Arial,sans-serif;font-size:14px;">
+<table width="100%" cellpadding="0" cellspacing="0" role="presentation"
+       style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;">
   ${items
     .map(
       (i) => `
-    <tr>
-      <td style="padding:8px;border-bottom:1px solid #eee;width:90px;">
-        ${
-          i.img
-            ? `<img src="${toAbsolute(i.img)}" alt="" width="80" style="display:block;border-radius:4px;" />`
-            : ""
-        }
-      </td>
-      <td style="padding:8px;border-bottom:1px solid #eee;">
-        <strong>${i.name}</strong><br>
-        Qty: ${i.qty} × ${rand(i.price)}
-      </td>
-      <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">
-        <strong>${rand(i.price * i.qty)}</strong>
-      </td>
-    </tr>`
+  <tr>
+    <td style="padding:14px 0;border-bottom:1px solid #eee;width:96px;vertical-align:middle;">
+      ${
+        i.img
+          ? `<img src="${toAbsolute(i.img)}" alt="" width="88" height="88"
+                  style="display:block;width:88px;height:88px;object-fit:cover;border-radius:10px;" />`
+          : ""
+      }
+    </td>
+    <td style="padding:14px 12px;border-bottom:1px solid #eee;vertical-align:middle;">
+      <div style="font-size:15px;font-weight:bold;color:#1a1a1a;">${esc(i.name)}</div>
+      <div style="font-size:13px;color:#77716a;margin-top:4px;">
+        ${rand(i.price)} each &nbsp;·&nbsp;
+        <span style="background:#f4f1ec;border-radius:999px;padding:2px 10px;color:#1a1a1a;font-weight:bold;">
+          Qty ${i.qty}
+        </span>
+      </div>
+    </td>
+    <td style="padding:14px 0;border-bottom:1px solid #eee;vertical-align:middle;text-align:right;
+               font-size:15px;font-weight:bold;color:#1a1a1a;white-space:nowrap;">
+      ${rand(i.price * i.qty)}
+    </td>
+  </tr>`
     )
     .join("")}
 </table>`;
-
     setStatus("sending");
     try {
       await emailjs.send(
