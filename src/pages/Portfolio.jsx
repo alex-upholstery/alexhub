@@ -5,9 +5,9 @@ import bedroom from '../assets/images/bedroom-headboard.jpg';
 import mediaUnit from '../assets/images/curtains-9.jpeg';
 import carSeat from '../assets/images/carseat-rear-2.jpeg';
 import patioLounge from '../assets/images/patio-lounge.jpg';
-import livingRoom from '../assets/images/living-room-yellow.jpg';
+import livingRoom from '../assets/img/couches/IMG-20261118-WA0003.jpg';
 import outdoorBench from '../assets/images/outdoor-1.jpeg';
-import chesterfield from '../assets/images/chesterfield-chaise.jpg';
+import chesterfield from '../assets/img/couches/IMG-20261118-WA0009.jpg';
 import outdoorCouch from '../assets/images/outdoor-couch.jpg';
 import kitchen from '../assets/images/kitchen-white.jpg';
 

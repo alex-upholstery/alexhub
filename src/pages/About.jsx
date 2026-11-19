@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Testimonials from '../components/Testimonials.jsx';
 import Newsletter from '../components/Newsletter.jsx';
-import aboutHero from '../assets/images/living-room-yellow.jpg';
+import aboutHero from '../assets/img/couches/IMG-20261118-WA0003.jpg';
 import processImg from '../assets/images/fabric-swatch-1.jpg';
 
 const TEAM = [

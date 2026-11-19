@@ -7,7 +7,7 @@ import heroImg3 from "../assets/img/headboards&beds/hero-1.jpg";
 import heroImg4 from "../assets/img/Dining-tables&chairs/hero-1.jpg";
 import heroImg from "../assets/images/back-2.webp";
 import chesterfield from "../assets/images/reupholstery-1.jpeg";
-import carSeat from "../assets/images/car-seat-black.jpg";
+import carSeat from "../assets/images/carseat-rear-6.jpeg";
 import mediaUnit from "../assets/images/curtains-5.jpeg";
 import customTable from "../assets/images/custom-table.jpg";
 import livingRoom from "../assets/images/living-room-grey.jpg";
