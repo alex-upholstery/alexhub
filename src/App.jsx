@@ -16,6 +16,9 @@ import ContactButton from './components/ContactButton.jsx';
 import Search from "./pages/Search";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Settings from "./pages/Settings";
+import Favourites from "./pages/Favourites";
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -36,6 +39,8 @@ export default function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/catalogue" element={<Catalogue />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+<Route path="/favourites" element={<ProtectedRoute><Favourites /></ProtectedRoute>} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/gallery" element={<Gallery />} />

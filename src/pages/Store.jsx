@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext";
+import { useAuth } from "../AuthContext";
+import { useFavourites } from "../FavouritesContext";
 import { DINING, CHAIRS, BEDS, PEDESTALS } from "../store-data.js";
 import Testimonials from "../components/Testimonials.jsx";
 import Newsletter from "../components/Newsletter.jsx";
@@ -188,11 +190,30 @@ const SHOWROOM_PRODUCTS = [
   { src: s37, label: "Beige armchairs & loveseat set", from: PRICE.suite },
 ].map((p, i) => ({ ...p, id: `showroom-${i + 1}` }));
 
+const HeartIcon = ({ filled }) => (
+  <svg
+    viewBox="0 0 24 24"
+    width="20"
+    height="20"
+    fill={filled ? "currentColor" : "none"}
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 20s-7-4.4-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.6-9 9-9 9z" />
+  </svg>
+);
 function ProductCard({ item }) {
-  const { add } = useCart();
+ const { add } = useCart();
+  const { user } = useAuth();
+  const { isFav, toggleFav } = useFavourites();
+  const navigate = useNavigate();
   const [added, setAdded] = useState(false);
   const name = item.name || item.label;
   const image = item.img || item.src;
+  const fav = isFav(item.id);
 
   const handleAdd = () => {
     add({ id: item.id, name, price: item.from, img: image });
@@ -200,9 +221,25 @@ function ProductCard({ item }) {
     setTimeout(() => setAdded(false), 1600);
   };
 
+  const handleFav = () => {
+    if (!user) return navigate("/login");
+    toggleFav({ id: item.id, name, image, price: item.from });
+  };
+
   return (
     <article className="product-card">
-      <img src={image} alt={name} loading="lazy" />
+      <div className="product-media">
+        <img src={image} alt={name} loading="lazy" />
+        <button
+          type="button"
+          className={`fav-btn${fav ? " active" : ""}`}
+          onClick={handleFav}
+          aria-label={fav ? `Remove ${name} from favourites` : `Save ${name} to favourites`}
+          aria-pressed={fav}
+        >
+          <HeartIcon filled={fav} />
+        </button>
+      </div>
       <div className="product-body">
         <h3>{name}</h3>
         {item.text && <p className="desc">{item.text}</p>}
@@ -367,6 +404,25 @@ export default function Store() {
           .product-body { padding: 12px; }
           .product-body h3 { font-size: 0.9rem; }
         }
+          .product-media { position: relative; }
+.fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.fav-btn:hover { transform: scale(1.1); }
+.fav-btn.active { color: #d93025; }
       `}</style>
     </>
   );

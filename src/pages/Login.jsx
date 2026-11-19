@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase"; 
 
@@ -33,7 +34,7 @@ export default function Login() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const isRegister = mode === "register";
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -66,7 +67,7 @@ export default function Login() {
       } else {
         await signInWithEmailAndPassword(auth, form.email, form.password);
       }
-      // Success: redirect here, e.g. navigate("/dashboard")
+     navigate("/");
     } catch (err) {
       setError(friendlyError(err.code));
     } finally {
