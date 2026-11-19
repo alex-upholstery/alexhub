@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Testimonials from "../components/Testimonials.jsx";
 import Newsletter from "../components/Newsletter.jsx";
+import PromoPopup from "../components/PromoPopup.jsx";
+import promoSofa from "../assets/img/couches/promo-modular-sofa.jpeg";
 import heroImg2 from "../assets/img/Occassional-chairs/hero-1.jpg";
 import heroImg3 from "../assets/img/headboards&beds/hero-1.jpg";
 import heroImg4 from "../assets/img/Dining-tables&chairs/hero-1.jpg";
@@ -16,6 +18,9 @@ import patioPool from "../assets/images/patio-pool.jpg";
 import trustImg from "../assets/img/Occassional-chairs/IMG-20261118-WA0133.jpg";
 import trustImg1 from "../assets/img/headboards&beds/IMG-20261118-WA0126.jpg";
 import trustImg2 from "../assets/img/Patio/IMG-20261118-WA0153.jpg";
+import trustImg3 from "../assets/img/cabinetry/IMG-20261118-WA0161.jpg";
+import trustImg4 from "../assets/img/couches/IMG-20261118-WA0056.jpg";
+
 import SideActions from "../components/SideActions.jsx";
 // Real showroom photography — De Palace Mall
 import newArrivalImg from "../assets/img/Dining-tables&chairs/IMG-20261118-WA0116.jpg";
@@ -37,6 +42,15 @@ import chairs6 from "../assets/img/Occassional-chairs/IMG-20261118-WA0113.jpg";
 import chairs7 from "../assets/img/Occassional-chairs/IMG-20261118-WA0127.jpg";
 import chairs8 from "../assets/img/Occassional-chairs/IMG-20261118-WA0144.jpg";
 
+import kitchen1 from "../assets/img/cabinetry/IMG-20261118-WA0061.jpg";
+import kitchen2 from "../assets/img/cabinetry/IMG-20261118-WA0162.jpg";
+import kitchen3 from "../assets/img/cabinetry/IMG-20261118-WA0160.jpg";
+import kitchen4 from "../assets/img/cabinetry/IMG-20261118-WA0159.jpg";
+import kitchen5 from "../assets/img/cabinetry/IMG-20261118-WA0155.jpg";
+import kitchen6 from "../assets/img/cabinetry/IMG-20261118-WA0109.jpg";
+import kitchen7 from "../assets/img/cabinetry/IMG-20261118-WA0102.jpg";
+import kitchen8 from "../assets/img/cabinetry/IMG-20261118-WA0088.jpg";
+
 import beds1 from "../assets/img/headboards&beds/IMG-20261118-WA0143.jpg";
 import beds2 from "../assets/img/headboards&beds/IMG-20261118-WA0152.jpg";
 import beds3 from "../assets/img/headboards&beds/IMG-20261118-WA0128.jpg";
@@ -54,6 +68,15 @@ import patios5 from "../assets/img/Pedestals/IMG-20261118-WA0135.jpg";
 import patios6 from "../assets/img/Pedestals/IMG-20261118-WA0138.jpg";
 import patios7 from "../assets/img/Pedestals/IMG-20261118-WA0139.jpg";
 import patios8 from "../assets/img/Patio/IMG-20261118-WA0153.jpg";
+
+import couches1 from "../assets/img/couches/IMG-20261118-WA0059.jpg";
+import couches2 from "../assets/img/couches/IMG-20261118-WA0002.jpg";
+import couches3 from "../assets/img/couches/IMG-20261118-WA0004.jpg";
+import couches4 from "../assets/img/couches/IMG-20261118-WA0007.jpg";
+import couches5 from "../assets/img/couches/IMG-20261118-WA0024.jpg";
+import couches6 from "../assets/img/couches/IMG-20261118-WA0028.jpg";
+import couches7 from "../assets/img/couches/IMG-20261118-WA0030.jpg";
+import couches8 from "../assets/img/couches/IMG-20261118-WA0031.jpg";
 
 const HERO_IMAGES = [heroImg, heroImg, heroImg, heroImg];
 const SERVICES = [
@@ -105,6 +128,8 @@ const formatRand = (n) =>
 const DINING_FROM = 34900;
 const CHAIR_FROM = 6500;
 const BED_FROM = 13700;
+const KITCHEN_FROM = 31500;
+const COUCHES_FROM = 25000;
 
 const SHOWCASE = [
   {
@@ -207,7 +232,56 @@ const CHAIRS = [
     from: CHAIR_FROM,
   },
 ];
-
+const KITCHEN = [
+  {
+    img: kitchen1, // WA0061
+    name: "Two-Tone L-Shaped Kitchen",
+    text: "Oak-look wall units over taupe base cabinets, with handleless doors, a white worktop and black trim details.",
+    from: KITCHEN_FROM,
+  },
+  {
+    img: kitchen2, // WA0162
+    name: "Glass-Door Display & Fridge Unit",
+    text: "Black-framed glass cabinets with LED lighting and an oak-look display nook, above taupe storage and beside a built-in fridge surround.",
+    from: KITCHEN_FROM,
+  },
+  {
+    img: kitchen3, // WA0160
+    name: "Fluted Grey Sideboard",
+    text: "Fluted grey doors and drawers under a marble-effect top, with black-framed glass wall cabinets and a tall lit display column.",
+    from: KITCHEN_FROM,
+  },
+  {
+    img: kitchen4, // WA0159
+    name: "Floor-to-Ceiling Wardrobe",
+    text: "Taupe matte wardrobe with full-height doors, top boxes, sculpted edge pulls and an open lit shelving end with bench seat.",
+    from: KITCHEN_FROM,
+  },
+  {
+    img: kitchen5, // WA0155
+    name: "Glass Display Cabinet & Buffet",
+    text: "Glass-fronted wall cabinet with warm LED lighting above a cream-and-oak buffet with drawers and cupboards, ideal for glassware and a drinks station.",
+    from: KITCHEN_FROM,
+  },
+  {
+    img: kitchen6, // WA0109
+    name: "Coffee Station Cabinet",
+    text: "White tall unit with a lit marble-effect coffee nook, a glass-door display column, and handleless drawers and cupboards below.",
+    from: KITCHEN_FROM,
+  },
+  {
+    img: kitchen7, // WA0102
+    name: "Gloss White Kitchen Units",
+    text: "High-gloss white wall and base cabinets with black bar handles, three-drawer unit and a dark worktop with inset sink.",
+    from: KITCHEN_FROM,
+  },
+  {
+    img: kitchen8, // WA0088
+    name: "Walnut Handleless Kitchen",
+    text: "Rich walnut-grain handleless cabinets with a stone-effect worktop, matching splashback and under-cabinet lighting.",
+    from: KITCHEN_FROM,
+  },
+];
 const BEDS = [
   {
     img: beds1,
@@ -258,7 +332,56 @@ const BEDS = [
     from: BED_FROM,
   },
 ];
-
+const COUCHES = [
+  {
+    img: couches1,
+    name: "Burgundy Bouclé Sofa",
+    text: "Cream bouclé rolled arms and back wrapped around a deep burgundy seat, finished with timber side accents.",
+    from: COUCHES_FROM,
+  },
+  {
+    img: couches2,
+    name: "Cream Curved Sectional",
+    text: "Soft, rounded cream corner sofa with olive and neutral scatter cushions.",
+    from: COUCHES_FROM,
+  },
+  {
+    img: couches3,
+    name: "Taupe Suede Corner Sofa",
+    text: "Generous taupe corner sofa in a soft suede-look fabric with softly curved arms.",
+    from: COUCHES_FROM,
+  },
+  {
+    img: couches4,
+    name: "Low-Profile Chaise Sectional",
+    text: "Long, low cream sectional with a chaise end, walnut-trimmed arms and neat back cushions.",
+    from: COUCHES_FROM,
+  },
+  {
+    img: couches5,
+    name: "Cream Sofa & Armchair Set",
+    text: "Two plush cream sofas and a pair of barrel armchairs with walnut-trimmed arms and bases.",
+    from: COUCHES_FROM,
+  },
+  {
+    img: couches6,
+    name: "Rounded Sofa & Chairs Trio",
+    text: "Curved cream three-seater with two matching armchairs, walnut edging and brown scatter cushions.",
+    from: COUCHES_FROM,
+  },
+  {
+    img: couches7,
+    name: "Navy-Base Corner Sectional",
+    text: "Cream corner sofa with a rounded chaise on a dark navy base, styled with quilted teal bolsters.",
+    from: COUCHES_FROM,
+  },
+  {
+    img: couches8,
+    name: "Modular Bouclé U-Sectional",
+    text: "Sculpted modular cream bouclé sofa with a built-in walnut side table.",
+    from: COUCHES_FROM,
+  },
+];
 const PATIOS = [
   {
     img: patios1,
@@ -302,6 +425,97 @@ const PATIOS = [
   },
 ];
 
+const TRUST_STATS = [
+  { num: "5,000+", label: "Clients believe us" },
+  { num: "1,000+", label: "Projects done" },
+  { num: "1,500", label: "Products sold" },
+];
+
+// Image + text block. When it scrolls into the middle of the viewport the
+// image and the text slide across and swap sides (on mobile they slide in).
+function SwapSplit({
+  img,
+  alt,
+  eyebrow,
+  title,
+  text,
+  cta,
+  to,
+  mediaFirst = false,
+  stats = true,
+}) {
+  const ref = useRef(null);
+  // Browsers without IntersectionObserver just show the swapped layout.
+  const [inView, setInView] = useState(
+    typeof window !== "undefined" && !("IntersectionObserver" in window),
+  );
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      {
+        rootMargin: "-30% 0px -30% 0px",
+      },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const media = (
+    <div className="split-media swap-media">
+      <img src={img} alt={alt} />
+    </div>
+  );
+  const body = (
+    <div className="swap-text">
+      <span className="eyebrow">{eyebrow}</span>
+      <h2 style={{ marginTop: 14 }}>{title}</h2>
+      <p className="lede" style={{ marginTop: 18 }}>
+        {text}
+      </p>
+      {stats && (
+        <div
+          className="stat-row"
+          style={{ justifyContent: "flex-start", marginTop: 36 }}
+        >
+          {TRUST_STATS.map((s) => (
+            <div key={s.label}>
+              <div className="num">{s.num}</div>
+              <div className="label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      <Link to={to} className="btn solid" style={{ marginTop: 36 }}>
+        {cta}
+      </Link>
+    </div>
+  );
+
+  return (
+    <div className="wrap">
+      <div
+        ref={ref}
+        className={`split swap-split${mediaFirst ? " media-first" : ""}${inView ? " is-in" : ""}`}
+      >
+        {mediaFirst ? (
+          <>
+            {media}
+            {body}
+          </>
+        ) : (
+          <>
+            {body}
+            {media}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function PriceTag({ from }) {
   if (!from) return null;
   return (
@@ -330,6 +544,7 @@ export default function Home() {
   }, []);
   return (
     <>
+      <PromoPopup image={promoSofa} from={COUCHES_FROM} />
       <section className="hero">
         {HERO_IMAGES.map((img, i) => (
           <img
@@ -385,30 +600,17 @@ export default function Home() {
         </div>
       </section>
       <section className="alt">
-        <div className="wrap">
-          <div className="split">
-            <div className="split-media">
-              <img
-                src={newArrivalImg}
-                alt="Boucle curved sofa, new showroom arrival"
-              />
-            </div>
-            <div>
-              <span className="eyebrow">Fresh from the showroom</span>
-              <h2 style={{ marginTop: 14 }}>
-                New arrivals, ready to view in person
-              </h2>
-              <p className="lede" style={{ marginTop: 18 }}>
-                Sculptural sofas, statement beds and curved sectionals — styled
-                and ready to inspire your next room. Stop by the showroom or
-                browse the collection online.
-              </p>
-              <Link to="/store" className="btn solid" style={{ marginTop: 36 }}>
-                Shop new arrivals
-              </Link>
-            </div>
-          </div>
-        </div>
+        <SwapSplit
+          img={newArrivalImg}
+          alt="Oval marble-effect dining table with a fluted pedestal base and taupe shell chairs on gold legs"
+          eyebrow="Fresh from the showroom"
+          title="New arrival: fluted marble dining sets"
+          text="An oval marble-effect table on a sculpted fluted pedestal, surrounded by taupe shell-back chairs on slim gold legs. Elegant for family dinners and entertaining. Stop by the showroom or browse the collection online."
+          cta="Shop new arrivals"
+          to="/store"
+          mediaFirst={true}
+          stats={false}
+        />
       </section>
       <section>
         <div className="wrap">
@@ -439,51 +641,57 @@ export default function Home() {
         </div>
       </section>
       <section>
+        <SwapSplit
+          img={trustImg}
+          alt="Rust orange upholstered armchair with a sculpted cut-out arm design"
+          eyebrow="Statement seating"
+          title="A sculpted armchair with serious personality"
+          text="Deep rust-orange fabric wraps this armchair in a bold, open-arm silhouette with a wide, plush seat. A striking accent piece for living rooms, reading corners and bedrooms."
+          cta="Shop occasional chairs"
+          to="/store"
+          mediaFirst={false}
+        />
+      </section>
+      <section>
         <div className="wrap">
-          <div className="split">
-            <div>
-              <span className="eyebrow">
-                Trusted to give your furniture a new life
-              </span>
-              <h2 style={{ marginTop: 14 }}>
-                Don't say goodbye to your favorite pieces
-              </h2>
-              <p className="lede" style={{ marginTop: 18 }}>
-                Partner with us to restore and revitalize the furniture you
-                love. From selecting fabrics to meticulous craftsmanship, we
-                bring your vision to life.
-              </p>
-              <div
-                className="stat-row"
-                style={{ justifyContent: "flex-start", marginTop: 36 }}
-              >
-                <div>
-                  <div className="num">5,000+</div>
-                  <div className="label">Clients believe us</div>
-                </div>
-                <div>
-                  <div className="num">1,000+</div>
-                  <div className="label">Projects done</div>
-                </div>
-                <div>
-                  <div className="num">1,500</div>
-                  <div className="label">Products sold</div>
+          <div className="section-head">
+            <span className="eyebrow">Inside our showroom</span>
+            <h2>A closer look at recent pieces</h2>
+            <p className="lede" style={{ margin: "16px auto 0" }}>
+              Kitchen Units & Cabinetry
+            </p>
+          </div>
+          <div className="grid cols-4">
+            {KITCHEN.map((s) => (
+              <div className="service-card" key={s.name}>
+                <img src={s.img} alt={s.name} />
+                <div className="body">
+                  <h3>{s.name}</h3>
+                  <p>{s.text}</p>
+                  <PriceTag from={s.from} />
                 </div>
               </div>
-              <Link to="/about" className="btn solid" style={{ marginTop: 36 }}>
-                Learn our story
-              </Link>
-            </div>
-            <div className="split-media">
-              <img
-                src={trustImg}
-                alt="Blue upholstered couch with matching ottoman"
-              />
-            </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 40 }}>
+            <Link to="/gallery" className="btn">
+              See the full gallery
+            </Link>
           </div>
         </div>
       </section>
-
+      <section>
+        <SwapSplit
+          img={trustImg3}
+          alt="Cream shaker-style L-shaped kitchen with oak-look worktop and splashback"
+          eyebrow="Made-to-measure kitchens"
+          title="Shaker-style cabinetry, warm and timeless"
+          text="Cream shaker doors with brushed knobs, an oak-look worktop and splashback, and a built-in oven and hob. Every unit is built to fit your space, so the finished kitchen looks planned from corner to corner."
+          cta="Explore kitchens"
+          to="/store"
+          mediaFirst={false}
+        />
+      </section>
       <section>
         <div className="wrap">
           <div className="section-head">
@@ -513,49 +721,56 @@ export default function Home() {
         </div>
       </section>
       <section>
+        <SwapSplit
+          img={trustImg1}
+          alt="Taupe channel-panel upholstered headboard and base with matching cushions"
+          eyebrow="Headboards & beds"
+          title="Channel-panel headboards for restful bedrooms"
+          text="A tall taupe headboard with vertical channel panels and softly curved sides, paired with a matching upholstered base. Finished in a textured fabric and made to suit any bed size."
+          cta="Explore beds"
+          to="/store"
+          mediaFirst={false}
+        />
+      </section>
+      <section>
         <div className="wrap">
-          <div className="split">
-            <div>
-              <span className="eyebrow">
-                Trusted to give your furniture a new life
-              </span>
-              <h2 style={{ marginTop: 14 }}>
-                Don't say goodbye to your favorite pieces
-              </h2>
-              <p className="lede" style={{ marginTop: 18 }}>
-                Partner with us to restore and revitalize the furniture you
-                love. From selecting fabrics to meticulous craftsmanship, we
-                bring your vision to life.
-              </p>
-              <div
-                className="stat-row"
-                style={{ justifyContent: "flex-start", marginTop: 36 }}
-              >
-                <div>
-                  <div className="num">5,000+</div>
-                  <div className="label">Clients believe us</div>
-                </div>
-                <div>
-                  <div className="num">1,000+</div>
-                  <div className="label">Projects done</div>
-                </div>
-                <div>
-                  <div className="num">1,500</div>
-                  <div className="label">Products sold</div>
+          <div className="section-head">
+            <span className="eyebrow">Inside our showroom</span>
+            <h2>A closer look at recent pieces</h2>
+            <p className="lede" style={{ margin: "16px auto 0" }}>
+              Couches and Sofas
+            </p>
+          </div>
+          <div className="grid cols-4">
+            {COUCHES.map((s) => (
+              <div className="service-card" key={s.name}>
+                <img src={s.img} alt={s.name} />
+                <div className="body">
+                  <h3>{s.name}</h3>
+                  <p>{s.text}</p>
+                  <PriceTag from={s.from} />
                 </div>
               </div>
-              <Link to="/about" className="btn solid" style={{ marginTop: 36 }}>
-                Learn our story
-              </Link>
-            </div>
-            <div className="split-media">
-              <img
-                src={trustImg1}
-                alt="Blue upholstered couch with matching ottoman"
-              />
-            </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 40 }}>
+            <Link to="/gallery" className="btn">
+              See the full gallery
+            </Link>
           </div>
         </div>
+      </section>
+      <section>
+        <SwapSplit
+          img={trustImg4}
+          alt="Cream curved sofas with orange accent chairs in a dark panelled living room"
+          eyebrow="Couches & sofas"
+          title="Curved sofas that anchor the whole room"
+          text="Plush cream curved sofas paired with burnt-orange accent chairs and a round glass coffee table. A soft, sculptural seating arrangement that stands out against dark panelling and polished floors."
+          cta="Shop couches"
+          to="/store"
+          mediaFirst={false}
+        />
       </section>
       <section>
         <div className="wrap">
@@ -586,49 +801,16 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="wrap">
-          <div className="split">
-            <div className="split-media">
-              <img
-                src={trustImg2}
-                alt="Blue upholstered couch with matching ottoman"
-              />
-            </div>
-            <div>
-              <span className="eyebrow">
-                Trusted to give your furniture a new life
-              </span>
-              <h2 style={{ marginTop: 14 }}>
-                Don't say goodbye to your favorite pieces
-              </h2>
-              <p className="lede" style={{ marginTop: 18 }}>
-                Partner with us to restore and revitalize the furniture you
-                love. From selecting fabrics to meticulous craftsmanship, we
-                bring your vision to life.
-              </p>
-              <div
-                className="stat-row"
-                style={{ justifyContent: "flex-start", marginTop: 36 }}
-              >
-                <div>
-                  <div className="num">5,000+</div>
-                  <div className="label">Clients believe us</div>
-                </div>
-                <div>
-                  <div className="num">1,000+</div>
-                  <div className="label">Projects done</div>
-                </div>
-                <div>
-                  <div className="num">1,500</div>
-                  <div className="label">Products sold</div>
-                </div>
-              </div>
-              <Link to="/about" className="btn solid" style={{ marginTop: 36 }}>
-                Learn our story
-              </Link>
-            </div>
-          </div>
-        </div>
+        <SwapSplit
+          img={trustImg2}
+          alt="Hardtop gazebo with timber posts and an outdoor lounge set on a paved patio"
+          eyebrow="Patios & outdoor living"
+          title="Covered outdoor living, built to relax in"
+          text="A hardtop gazebo with a dark steel roof and sturdy timber posts, shading a cushioned outdoor lounge set. A shaded spot for family time and entertaining, whatever the weather."
+          cta="Explore patios"
+          to="/store"
+          mediaFirst={true}
+        />
       </section>
       <Testimonials />
       <section>
