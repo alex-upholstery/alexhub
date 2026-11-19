@@ -1,14 +1,43 @@
 import { useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { auth, db } from "../firebase"; 
+
+function friendlyError(code) {
+  switch (code) {
+    case "auth/email-already-in-use":
+      return "An account with that email already exists.";
+    case "auth/invalid-email":
+      return "Enter a valid email address.";
+    case "auth/weak-password":
+      return "Password must be at least 6 characters.";
+    case "auth/invalid-credential":
+    case "auth/user-not-found":
+    case "auth/wrong-password":
+      return "Incorrect email or password.";
+    case "auth/too-many-requests":
+      return "Too many attempts. Try again later.";
+    case "auth/network-request-failed":
+      return "Network error. Check your connection.";
+    default:
+      return "Something went wrong. Please try again.";
+  }
+}
 
 export default function Login() {
-  const [mode, setMode] = useState("login"); // "login" | "register"
+  const [mode, setMode] = useState("login");
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const isRegister = mode === "register";
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError("");
 
@@ -18,8 +47,31 @@ export default function Login() {
       return setError("Password must be at least 6 characters.");
     if (isRegister && !form.name.trim()) return setError("Enter your name.");
 
-    // TODO: call your auth API here.
-    console.log(isRegister ? "register" : "login", form);
+    setLoading(true);
+    try {
+      if (isRegister) {
+        const cred = await createUserWithEmailAndPassword(
+          auth,
+          form.email,
+          form.password
+        );
+        await updateProfile(cred.user, { displayName: form.name.trim() });
+
+        // Save extra profile data in Firestore (never store the password)
+        await setDoc(doc(db, "users", cred.user.uid), {
+          name: form.name.trim(),
+          email: form.email,
+          createdAt: serverTimestamp(),
+        });
+      } else {
+        await signInWithEmailAndPassword(auth, form.email, form.password);
+      }
+      // Success: redirect here, e.g. navigate("/dashboard")
+    } catch (err) {
+      setError(friendlyError(err.code));
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -73,8 +125,12 @@ export default function Login() {
             </p>
           )}
 
-          <button type="submit" className="btn solid block">
-            {isRegister ? "Create account" : "Log in"}
+          <button type="submit" className="btn solid block" disabled={loading}>
+            {loading
+              ? "Please wait..."
+              : isRegister
+              ? "Create account"
+              : "Log in"}
           </button>
 
           <p className="muted center">
